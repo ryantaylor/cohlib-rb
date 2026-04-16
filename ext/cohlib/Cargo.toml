@@ -10,4 +10,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 magnus = { version = "0.8" }
-cohlib = { path = "../../../cohlib/crates/cohlib", features = ["magnus"] }
+cohlib = { git = "https://github.com/ryantaylor/cohlib", features = ["magnus"] }

@@ -1,3 +1,4 @@
 /ext/cohlib/target
 tmp/
 .DS_Store
+cohlib.bundle
