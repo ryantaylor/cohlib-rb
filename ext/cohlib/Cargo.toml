@@ -1,0 +1,13 @@
+[package]
+name = "cohlib_ext"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "cohlib"
+crate-type = ["cdylib"]
+
+[dependencies]
+magnus = { version = "0.8" }
+cohlib = { path = "../../../cohlib/crates/cohlib", features = ["magnus"] }
