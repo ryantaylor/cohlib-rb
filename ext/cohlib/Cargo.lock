@@ -37,14 +37,14 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "2.11.0"
+version = "2.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "843867be96c8daad0d758b57df9392b6d8d271134fce549de6ce169ff98a92af"
+checksum = "c4512299f36f043ab09a583e57bceb5a5aab7a73db1805848e8fef3c9e8c78b3"
 
 [[package]]
 name = "build-order"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#74c7ba04ab34004ea75ad4b7c1254b5e2e6a8f01"
+source = "git+https://github.com/ryantaylor/cohlib#b558c992eeb550d7d38d3c380f64fe2b04f04573"
 dependencies = [
  "data",
  "magnus",
@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "cohlib"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#74c7ba04ab34004ea75ad4b7c1254b5e2e6a8f01"
+source = "git+https://github.com/ryantaylor/cohlib#b558c992eeb550d7d38d3c380f64fe2b04f04573"
 dependencies = [
  "build-order",
  "data",
@@ -128,7 +128,7 @@ dependencies = [
 [[package]]
 name = "data"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#74c7ba04ab34004ea75ad4b7c1254b5e2e6a8f01"
+source = "git+https://github.com/ryantaylor/cohlib#b558c992eeb550d7d38d3c380f64fe2b04f04573"
 dependencies = [
  "flate2",
  "magnus",
@@ -192,9 +192,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.184"
+version = "0.2.185"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "48f5d2a454e16a5ea0f4ced81bd44e4cfc7bd3a507b61887c99fd3538b28e4af"
+checksum = "52ff2c0fe9bc6cb6b14a0592c2ff4fa9ceb83eea9db979b0487cd054946a2b8f"
 
 [[package]]
 name = "libloading"
@@ -379,7 +379,7 @@ checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
 [[package]]
 name = "replay"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#74c7ba04ab34004ea75ad4b7c1254b5e2e6a8f01"
+source = "git+https://github.com/ryantaylor/cohlib#b558c992eeb550d7d38d3c380f64fe2b04f04573"
 dependencies = [
  "byteorder",
  "magnus",
@@ -520,9 +520,9 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 
 [[package]]
 name = "uuid"
-version = "1.23.0"
+version = "1.23.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ac8b6f42ead25368cf5b098aeb3dc8a1a2c05a3eee8a9a1a68c640edbfc79d9"
+checksum = "ddd74a9687298c6858e9b88ec8935ec45d22e8fd5e6394fa1bd4e99a87789c76"
 dependencies = [
  "js-sys",
  "serde_core",
