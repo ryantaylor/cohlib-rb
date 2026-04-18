@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     cohlib (0.1.0)
+      rb_sys (~> 0.9)
 
 PATH
   remote: /Users/ryantaylor/Code/reinforce
