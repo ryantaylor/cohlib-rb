@@ -9,5 +9,4 @@ name = "cohlib"
 crate-type = ["cdylib"]
 
 [dependencies]
-magnus = { version = "0.8" }
-cohlib = { git = "https://github.com/ryantaylor/cohlib", features = ["magnus"] }
+cohlib-rb = { git = "https://github.com/ryantaylor/cohlib" }
