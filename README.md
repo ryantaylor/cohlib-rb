@@ -39,8 +39,8 @@ puts replay.version          # => 10612
 puts replay.game_type        # => "automatch"
 puts replay.players.count    # => 2
 
-# Extract the build order for player 0
-build_order = store.extract_build_order(replay, 0)
+# Extract the build order for player 0 (exclude cancelled actions)
+build_order = store.extract_build_order(replay, 0, false)
 build_order.actions.each do |action|
   puts "#{action.tick / 8}s  #{action.action_type}  pbgid=#{action.pbgid}"
 end
@@ -60,13 +60,15 @@ Load all historical game data compiled into the library.
 store = CohLib::VersionedStore.bundled
 ```
 
-#### `#extract_build_order(replay, player_index) -> BuildOrder`
+#### `#extract_build_order(replay, player_index, include_cancelled) -> BuildOrder`
 
 Extract the build order for one player from a parsed replay. Game data is resolved using the replay's build version with automatic fallback to the nearest known version.
 
+Pass `true` for `include_cancelled` to include cancelled actions in the result (they will have `cancelled: true`); pass `false` to filter them out.
+
 ```ruby
-build_order = store.extract_build_order(replay, 0)   # player 0
-build_order = store.extract_build_order(replay, 1)   # player 1
+build_order = store.extract_build_order(replay, 0, false)  # player 0, exclude cancelled
+build_order = store.extract_build_order(replay, 1, true)   # player 1, include cancelled
 ```
 
 Raises `RuntimeError` if `player_index` is out of range.
@@ -154,26 +156,26 @@ A single action in a player's build order.
 | `tick` | `Integer` | Game tick of the action; divide by 8 for seconds |
 | `index` | `Integer` | Command index within the tick, used for ordering tied actions |
 | `action_type` | `String` | Classification of the action (see below) |
-| `pbgid` | `Integer` | pbgid of the entity, ability, or upgrade involved |
+| `pbgid` | `Integer` | pbgid of the entity, ability, or upgrade involved; `0` for `"AITakeover"` actions |
 | `suspect` | `Boolean` | `true` if this building may have been cancelled before first use |
 | `cancelled` | `Boolean` | `true` if the action was explicitly cancelled |
-| `to_h` | `Hash` | `{ tick:, action_type:, pbgid:, suspect: }` |
+| `to_h` | `Hash` | `{ tick:, action_type:, pbgid:, suspect:, cancelled: }` |
 
 #### Action types
 
 | `action_type` | Description |
 |---|---|
-| `"construct_building"` | A building was placed using an autobuild ability |
-| `"train_unit"` | A squad was trained |
-| `"research_upgrade"` | An upgrade was researched |
-| `"select_battlegroup"` | A battlegroup was selected |
-| `"select_battlegroup_ability"` | A battlegroup ability slot was selected |
-| `"use_battlegroup_ability"` | A battlegroup ability was used |
-| `"ai_takeover"` | The player dropped and AI took over; this is always the last action |
+| `"ConstructBuilding"` | A building was placed using an autobuild ability |
+| `"TrainUnit"` | A squad was trained |
+| `"ResearchUpgrade"` | An upgrade was researched |
+| `"SelectBattlegroup"` | A battlegroup was selected |
+| `"SelectBattlegroupAbility"` | A battlegroup ability slot was selected |
+| `"UseBattlegroupAbility"` | A battlegroup ability was used |
+| `"AITakeover"` | The player dropped and AI took over; this is always the last action |
 
 #### Suspect buildings
 
-When a building is cancelled, cohlib marks subsequent placements of the same building type as suspects until a unit or upgrade is actually produced from one of them. A `suspect: true` action should be validated against subsequent production before being displayed to users. Cancelled actions (`cancelled: true`) are never included in the returned actions list.
+When a building is cancelled, cohlib marks subsequent placements of the same building type as suspects until a unit or upgrade is actually produced from one of them. A `suspect: true` action should be validated against subsequent production before being displayed to users. Cancelled actions (`cancelled: true`) are excluded by default; pass `include_cancelled: true` to `extract_build_order` to include them.
 
 ## Usage patterns
 
@@ -214,8 +216,8 @@ end
 ### Extract and render a build order
 
 ```ruby
-def build_order_for(replay, player_index, store: COHLIB_STORE)
-  store.extract_build_order(replay, player_index).actions.map do |action|
+def build_order_for(replay, player_index, store: COHLIB_STORE, include_cancelled: false)
+  store.extract_build_order(replay, player_index, include_cancelled).actions.map do |action|
     {
       time: "#{action.tick / 8}s",
       type: action.action_type,
@@ -243,7 +245,9 @@ bundle exec rake compile   # builds the native Rust extension
 bundle exec rspec          # runs the test suite
 ```
 
-The native extension links against cohlib, which embeds all historical game data at compile time via `build.rs`. The first build is slow (compiling the full dependency tree including libwebp); subsequent builds are incremental.
+The Ruby bindings are implemented in the upstream cohlib Rust library (`cohlib-rb` crate); `ext/cohlib/src/lib.rs` simply re-exports them. cohlib embeds all historical game data at compile time via `build.rs`. The first build is slow (compiling the full dependency tree including libwebp); subsequent builds are incremental.
+
+The `Cargo.lock` is kept up to date automatically: when cohlib publishes a new commit, a `repository_dispatch` event triggers the `sync-cohlib` workflow, which runs `cargo update -p cohlib-rb` and pushes the updated lockfile.
 
 ## Running tests
 

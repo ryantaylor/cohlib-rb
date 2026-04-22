@@ -12,14 +12,14 @@ module CohLib
   #   @return [Integer]
   #
   # @!method action_type
-  #   Snake-case action type string. One of:
-  #     - `"construct_building"`
-  #     - `"train_unit"`
-  #     - `"research_upgrade"`
-  #     - `"select_battlegroup"`
-  #     - `"select_battlegroup_ability"`
-  #     - `"use_battlegroup_ability"`
-  #     - `"ai_takeover"`
+  #   PascalCase action type string. One of:
+  #     - `"ConstructBuilding"`
+  #     - `"TrainUnit"`
+  #     - `"ResearchUpgrade"`
+  #     - `"SelectBattlegroup"`
+  #     - `"SelectBattlegroupAbility"`
+  #     - `"UseBattlegroupAbility"`
+  #     - `"AITakeover"`
   #   @return [String]
   #
   # @!method pbgid
@@ -35,7 +35,7 @@ module CohLib
   #   @return [Boolean]
   #
   # @!method to_h
-  #   Hash with +:tick+, +:action_type+, +:pbgid+, and +:suspect+ keys.
+  #   Hash with +:tick+, +:action_type+, +:pbgid+, +:suspect+, and +:cancelled+ keys.
   #   @return [Hash]
   class BuildAction
   end
