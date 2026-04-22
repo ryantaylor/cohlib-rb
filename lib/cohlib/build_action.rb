@@ -26,16 +26,16 @@ module CohLib
   #   pbgid of the entity, ability, or upgrade involved.
   #   @return [Integer]
   #
-  # @!method suspect
-  #   +true+ if this building may have been cancelled before use.
-  #   @return [Boolean]
+  # @!method suspect_since
+  #   Tick at which this building was marked suspect, or +nil+ if not suspect.
+  #   @return [Integer, nil]
   #
   # @!method cancelled
   #   +true+ if this action was explicitly cancelled.
   #   @return [Boolean]
   #
   # @!method to_h
-  #   Hash with +:tick+, +:action_type+, +:pbgid+, +:suspect+, and +:cancelled+ keys.
+  #   Hash with +:tick+, +:action_type+, +:pbgid+, +:suspect_since+, and +:cancelled+ keys.
   #   @return [Hash]
   class BuildAction
   end

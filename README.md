@@ -157,9 +157,9 @@ A single action in a player's build order.
 | `index` | `Integer` | Command index within the tick, used for ordering tied actions |
 | `action_type` | `String` | Classification of the action (see below) |
 | `pbgid` | `Integer` | pbgid of the entity, ability, or upgrade involved; `0` for `"AITakeover"` actions |
-| `suspect` | `Boolean` | `true` if this building may have been cancelled before first use |
+| `suspect_since` | `Integer, nil` | tick at which this building was marked suspect, or `nil` if not suspect |
 | `cancelled` | `Boolean` | `true` if the action was explicitly cancelled |
-| `to_h` | `Hash` | `{ tick:, action_type:, pbgid:, suspect:, cancelled: }` |
+| `to_h` | `Hash` | `{ tick:, action_type:, pbgid:, suspect_since:, cancelled: }` |
 
 #### Action types
 
@@ -175,7 +175,7 @@ A single action in a player's build order.
 
 #### Suspect buildings
 
-When a building is cancelled, cohlib marks subsequent placements of the same building type as suspects until a unit or upgrade is actually produced from one of them. A `suspect: true` action should be validated against subsequent production before being displayed to users. Cancelled actions (`cancelled: true`) are excluded by default; pass `include_cancelled: true` to `extract_build_order` to include them.
+When a building is cancelled, cohlib marks subsequent placements of the same building type as suspects until a unit or upgrade is actually produced from one of them. `suspect_since` contains the tick at which the action was marked suspect, and is `nil` for non-suspect actions. A suspect action should be validated against subsequent production before being displayed to users. Cancelled actions (`cancelled: true`) are excluded by default; pass `include_cancelled: true` to `extract_build_order` to include them.
 
 ## Usage patterns
 
@@ -222,7 +222,7 @@ def build_order_for(replay, player_index, store: COHLIB_STORE, include_cancelled
       time: "#{action.tick / 8}s",
       type: action.action_type,
       pbgid: action.pbgid,
-      suspect: action.suspect
+      suspect_since: action.suspect_since
     }
   end
 end
