@@ -44,7 +44,7 @@ checksum = "c4512299f36f043ab09a583e57bceb5a5aab7a73db1805848e8fef3c9e8c78b3"
 [[package]]
 name = "build-order"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#401b3728774005683c0b3c5065287539045c4c9a"
+source = "git+https://github.com/ryantaylor/cohlib#91ac5c123c93cbfa8fa2cc7fbd70b5ff90c641cf"
 dependencies = [
  "data",
  "magnus",
@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "cohlib"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#401b3728774005683c0b3c5065287539045c4c9a"
+source = "git+https://github.com/ryantaylor/cohlib#91ac5c123c93cbfa8fa2cc7fbd70b5ff90c641cf"
 dependencies = [
  "build-order",
  "data",
@@ -111,7 +111,7 @@ dependencies = [
 [[package]]
 name = "cohlib-rb"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#401b3728774005683c0b3c5065287539045c4c9a"
+source = "git+https://github.com/ryantaylor/cohlib#91ac5c123c93cbfa8fa2cc7fbd70b5ff90c641cf"
 dependencies = [
  "cohlib",
  "magnus",
@@ -136,7 +136,7 @@ dependencies = [
 [[package]]
 name = "data"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#401b3728774005683c0b3c5065287539045c4c9a"
+source = "git+https://github.com/ryantaylor/cohlib#91ac5c123c93cbfa8fa2cc7fbd70b5ff90c641cf"
 dependencies = [
  "flate2",
  "magnus",
@@ -387,7 +387,7 @@ checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
 [[package]]
 name = "replay"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib#401b3728774005683c0b3c5065287539045c4c9a"
+source = "git+https://github.com/ryantaylor/cohlib#91ac5c123c93cbfa8fa2cc7fbd70b5ff90c641cf"
 dependencies = [
  "byteorder",
  "magnus",
