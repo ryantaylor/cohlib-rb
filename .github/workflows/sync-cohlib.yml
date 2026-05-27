@@ -44,7 +44,7 @@ jobs:
       - name: Notify cohdb of new cohlib build
         if: steps.commit.outputs.committed == 'true' && github.event.client_payload.version != ''
         run: |
-          gh api repos/ryantaylor/next/dispatches \
+          gh api repos/cohdb/next/dispatches \
             -f event_type=cohlib-rb-bumped \
             -F "client_payload[build_number]=${{ github.event.client_payload.version }}" \
             -F "client_payload[cohlib_release_tag]=${{ github.event.client_payload.release_tag }}"
