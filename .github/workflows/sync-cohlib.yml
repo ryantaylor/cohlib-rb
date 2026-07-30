@@ -41,8 +41,16 @@ jobs:
       # Only notify cohdb when the upstream dispatch came from update-game-data
       # (i.e., a real new patch). Generic cohlib pushes via notify-cohlib-rb
       # do not include a `version` field and must not trigger the patch sync.
+      #
+      # Gate on the payload alone, not steps.commit.outputs.committed: a
+      # generic push-triggered dispatch (e.g. someone merging a PR to cohlib)
+      # can race ahead of update-game-data's own dispatch and already bump
+      # Cargo.lock to the same commit, leaving nothing for this run to
+      # commit. That's still a real new game version that cohdb needs to
+      # hear about, so the notification must not depend on this run being
+      # the one that happened to make the commit.
       - name: Notify cohdb of new cohlib build
-        if: steps.commit.outputs.committed == 'true' && github.event.client_payload.version != ''
+        if: github.event.client_payload.version != ''
         run: |
           gh api repos/cohdb/next/dispatches \
             -f event_type=cohlib-rb-bumped \
