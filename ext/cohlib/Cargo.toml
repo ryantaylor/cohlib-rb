@@ -8,5 +8,8 @@ publish = false
 name = "cohlib"
 crate-type = ["cdylib"]
 
+# TEMPORARY: pinned to the add-scenario-map-dimensions branch pending
+# https://github.com/ryantaylor/cohlib/pull/10. Revert to the bare `git` form
+# (no `branch`) once that PR merges and this is re-pinned via `cargo update`.
 [dependencies]
-cohlib-rb = { git = "https://github.com/ryantaylor/cohlib" }
+cohlib-rb = { git = "https://github.com/ryantaylor/cohlib", branch = "add-scenario-map-dimensions" }

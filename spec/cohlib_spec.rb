@@ -16,6 +16,24 @@ RSpec.describe CohLib::VersionedStore do
   it 'loads the bundled store' do
     expect(store).to be_a(described_class)
   end
+
+  describe '#map_size' do
+    it 'returns [width, height] for a known scenario, accepting raw replay form' do
+      scenario = 'data:scenarios\multiplayer\community\wadi_darnah_4p\wadi_darnah_4p'
+
+      expect(store.map_size(scenario, 46_121)).to eq([512.0, 384.0])
+    end
+
+    it 'falls back to the nearest known version, same as other game data lookups' do
+      scenario = 'scenarios/multiplayer/community/wadi_darnah_4p/wadi_darnah_4p'
+
+      expect(store.map_size(scenario, 999_999)).to eq([512.0, 384.0])
+    end
+
+    it 'returns nil for an unknown scenario' do
+      expect(store.map_size('scenarios/multiplayer/does_not_exist/does_not_exist', 46_121)).to be_nil
+    end
+  end
 end
 
 RSpec.describe CohLib::Replay do

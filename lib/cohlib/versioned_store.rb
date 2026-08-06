@@ -28,6 +28,16 @@ module CohLib
   #     +false+ (the default behaviour), they are filtered out
   #   @return [BuildOrder]
   #   @raise [RuntimeError] if the player index is out of range
+  #
+  # @!method map_size(scenario, build)
+  #   The world-space dimensions of a scenario, with version fallback.
+  #
+  #   Not present in replay data — only available from imported game data.
+  #   Accepts either raw replay form (+"data:scenarios\\..."+) or normalized
+  #   forward-slash form for +scenario+.
+  #   @param scenario [String] a scenario/map filename
+  #   @param build [Integer] game build number
+  #   @return [Array(Float, Float), nil] +[width, height]+, or +nil+ if unknown
   class VersionedStore
   end
 end
