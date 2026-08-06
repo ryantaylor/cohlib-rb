@@ -44,7 +44,7 @@ checksum = "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
 [[package]]
 name = "build-order"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib?branch=add-scenario-map-dimensions#f5c4ecf326d74e25383590cc3c92ca6d394d13f8"
+source = "git+https://github.com/ryantaylor/cohlib#a37539f2362c3e5be326f826d1f121018e8f974a"
 dependencies = [
  "data",
  "magnus",
@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "cohlib"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib?branch=add-scenario-map-dimensions#f5c4ecf326d74e25383590cc3c92ca6d394d13f8"
+source = "git+https://github.com/ryantaylor/cohlib#a37539f2362c3e5be326f826d1f121018e8f974a"
 dependencies = [
  "build-order",
  "data",
@@ -111,7 +111,7 @@ dependencies = [
 [[package]]
 name = "cohlib-rb"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib?branch=add-scenario-map-dimensions#f5c4ecf326d74e25383590cc3c92ca6d394d13f8"
+source = "git+https://github.com/ryantaylor/cohlib#a37539f2362c3e5be326f826d1f121018e8f974a"
 dependencies = [
  "cohlib",
  "magnus",
@@ -136,7 +136,7 @@ dependencies = [
 [[package]]
 name = "data"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib?branch=add-scenario-map-dimensions#f5c4ecf326d74e25383590cc3c92ca6d394d13f8"
+source = "git+https://github.com/ryantaylor/cohlib#a37539f2362c3e5be326f826d1f121018e8f974a"
 dependencies = [
  "flate2",
  "magnus",
@@ -418,7 +418,7 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 [[package]]
 name = "replay"
 version = "0.1.0"
-source = "git+https://github.com/ryantaylor/cohlib?branch=add-scenario-map-dimensions#f5c4ecf326d74e25383590cc3c92ca6d394d13f8"
+source = "git+https://github.com/ryantaylor/cohlib#a37539f2362c3e5be326f826d1f121018e8f974a"
 dependencies = [
  "byteorder",
  "magnus",
